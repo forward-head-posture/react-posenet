@@ -1,6 +1,6 @@
 {
   "name": "react-forward-head-posture",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "dist/index.umd.js",
   "browser": "dist/index.umd.js",
   "module": "dist/index.esm.js",
@@ -25,11 +25,11 @@
   },
   "homepage": "https://github.com/forward-head-posture/react-forward-head-posture#readme",
   "dependencies": {
-    "@tensorflow/tfjs": "^1.6.0",
-    "acorn": "^7.1.1",
+    "@tensorflow/tfjs": "^1.7.4",
+    "acorn": "^7.3.1",
     "await-to-js": "^2.1.1",
-    "regenerator-runtime": "^0.13.3",
-    "use-user-media": "0.1.4"
+    "regenerator-runtime": "^0.13.5",
+    "use-user-media": "^0.1.4"
   },
   "peerDependencies": {
     "react": "^16.12.0",
@@ -59,7 +59,6 @@
     "react-dom": "^16.13.1",
     "react-styleguidist": "^10.6.2",
     "rollup": "^1.32.1",
-    "rollup-plugin-async": "^1.2.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.3",

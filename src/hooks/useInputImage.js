@@ -12,8 +12,7 @@ export default function useInputImage({
   const [image, setImage] = useState()
   const userMediaDisabled = typeof input === "object"
   const [userMediaError, video] = useUserMediaVideo(
-    getMediaStreamConstraints(facingMode, frameRate),
-    userMediaDisabled
+    getMediaStreamConstraints(facingMode, frameRate)
   )
 
   useEffect(() => {
@@ -30,7 +29,6 @@ export default function useInputImage({
     if (video) {
       video.width = width
       video.height = height
-      video.playsInline = true
       setImage(video)
     }
   }, [userMediaDisabled, userMediaError, height, input, video, width])

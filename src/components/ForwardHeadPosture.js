@@ -31,18 +31,36 @@ export default function ForwardHeadPosture({
     if (!net || !image) return () => {}
     if ([net, image].some(elem => elem instanceof Error)) return () => {}
 
+    let intervalId
+    let requestId
+    function cleanUp() {
+      clearInterval(intervalId)
+      cancelAnimationFrame(requestId)
+    }
     const ctx = canvasRef.current.getContext("2d")
-    const intervalID = setInterval(async () => {
+
+    async function estimate() {
       try {
         ctx.drawImage(image, 0, 0, width, height)
         onEstimateRef.current(await net.estimate(image))
       } catch (err) {
-        clearInterval(intervalID)
+        clearInterval(intervalId)
         setErrorMessage(err.message)
       }
-    }, Math.round(1000 / frameRate))
+    }
 
-    return () => clearInterval(intervalID)
+    if (frameRate) {
+      intervalId = setInterval(estimate, Math.round(1000 / frameRate))
+      return cleanUp
+    }
+
+    function animate() {
+      estimate()
+      requestId = requestAnimationFrame(animate)
+    }
+    requestId = requestAnimationFrame(animate)
+
+    return cleanUp
   }, [frameRate, height, image, net, width])
   return (
     <>
